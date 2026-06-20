@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $x_id    = (int)($_POST['x_id']  ?? 1);
         $d_id    = (int)($_POST['d_id']  ?? 1);
         $phone   = trim($_POST['phone']       ?? '');
-
+ 
         if (!$name || !$pass || !$desig) {
             $err = 'Name, Password and Designation are required.';
         } else {
@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $sql = "INSERT INTO Researcher VALUES
                     (seq_researcher.NEXTVAL,:nam,:pwd,:area,:des,:aid,:xid,:did)";
             $res = dbExecute($sql, [':nam'=>$name,':pwd'=>$pass,':area'=>$area,
-                                    ':des'=>$desig,':aid'=>$a_id,':xid'=>$x_id,':did'=>$d_id]);
+                                    ':des'=>$desig,':aid'=>$a_id,':xid'=>$x_id,':did'=>$d_id]); 
             if ($res === true && $phone) {
                 // get new R_Id
                 $newId = dbFetchOne("SELECT seq_researcher.CURRVAL RID FROM DUAL")['RID'];
@@ -54,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $msg = ($res === true) ? 'Researcher updated!' : 'Error: '.$res;
     }
 
-    if ($action === 'delete') {
+    if ($action === 'delete') { 
         $id  = (int)$_POST['r_id'];
         $conn = getDB();
         // Implicit row lock before delete
@@ -82,7 +82,7 @@ $researchers = dbFetchAll(
             l.City, l.Country,
             (SELECT COUNT(*) FROM Authors a WHERE a.R_Id = r.R_Id) PUB_CNT,
             (SELECT COUNT(*) FROM Work w WHERE w.R_Id = r.R_Id) PROJ_CNT
-     FROM Researcher r
+     FROM Researcher r 
      LEFT JOIN Department d ON r.D_Id = d.D_Id
      LEFT JOIN Location   l ON r.X_Id = l.X_Id
      WHERE UPPER(r.Name) LIKE UPPER(:q)
@@ -103,7 +103,7 @@ $admins      = dbFetchAll("SELECT A_Id, Name FROM Admin ORDER BY Name");
     <title>Researchers — URMS</title>
     <link rel="stylesheet" href="assets/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-</head>
+</head> 
 <body>
 <?php include 'includes/sidebar.php'; ?>
 
