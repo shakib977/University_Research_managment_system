@@ -195,7 +195,7 @@ $admins = dbFetchAll(
                     </div>
                     <?php endforeach; ?>
                 </div>
-            </div>
+            </div> 
         </div>
 
     </div>
@@ -226,7 +226,7 @@ $admins = dbFetchAll(
                     <input type="password" name="a_password" class="form-control" required>
                 </div>
             </div>
-            <div class="modal-footer">
+            <div class="modal-footer"> 
                 <button type="button" class="btn btn-light" onclick="closeModal('addModal')">Cancel</button>
                 <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Save Admin</button>
             </div>
@@ -234,7 +234,7 @@ $admins = dbFetchAll(
     </div>
 </div>
 
-<!-- EDIT Modal -->
+<!-- EDIT Modal --> 
 <div class="modal-overlay" id="editModal">
     <div class="modal">
         <div class="modal-header">
@@ -288,7 +288,7 @@ function confirmDelete(id, name) {
     }
 }
 
-document.querySelectorAll('.modal-overlay').forEach(el => {
+document.querySelectorAll('.modal-overlay').forEach(el => { 
     el.addEventListener('click', e => { if (e.target === el) el.classList.remove('open'); });
 });
 </script>
